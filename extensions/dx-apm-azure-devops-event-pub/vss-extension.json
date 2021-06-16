@@ -1,0 +1,54 @@
+{
+    "manifestVersion": 1,
+    "id": "dx-apm-event-publisher",
+    "name": "DX APM Event Publisher",
+    "version": "1.0.0",
+    "publisher": "SrikantNoorani",
+    "public": false,
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "description": "DX APM Event Publisher",
+    "icons": {
+        "default": "images/dx-apm-icon.png"
+    },
+    "files": [
+        {
+            "path": "buildAndReleaseTask"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "dx-apm-event-publisher",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "buildAndReleaseTask"
+            }
+        }
+    ],
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "tags": [
+        "Continuous Integration",
+        "Continuous Delivery",
+        "Build",
+        "Release",
+        "devops",
+        "Application Monitoring",
+        "dxapm"
+    ],
+    "content": {
+        "details": {
+            "path": "README.md"
+        },
+        "license": {
+            "path": "license.md"
+        }
+    }
+}
