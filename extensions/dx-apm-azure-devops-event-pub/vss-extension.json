@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "dx-apm-event-publisher",
     "name": "DX APM Event Publisher",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "publisher": "SrikantNoorani",
     "public": false,
     "targets": [
@@ -16,7 +16,16 @@
     },
     "files": [
         {
+            "path": "dist",
+            "addressable": true
+        },
+        {
             "path": "buildAndReleaseTask"
+        },
+        {
+            "path": "node_modules",
+            "addressable": true,
+            "packagePath": "lib"
         }
     ],
     "contributions": [

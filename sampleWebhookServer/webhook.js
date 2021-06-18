@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, response) => {
   const event = request.body;
 
+console.log (event.type);
+
   // Handle the event
   switch (event.type) {
     case 'payment_intent.succeeded':
@@ -29,4 +31,4 @@ app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, respo
   response.json({received: true});
 });
 
-app.listen(8000, () => console.log('Running on port 8000'));
+app.listen(3000, () => console.log('Running on port 3000'));
