@@ -1,34 +1,22 @@
-// This example uses Express to receive webhooks
-const app = require('express')();
-
-// Use body-parser to retrieve the raw body as a buffer
 const bodyParser = require('body-parser');
+const http = require('http');
 
-// Match the raw body to content type application/json
-app.post('/webhook', bodyParser.raw({type: 'application/json'}), (request, response) => {
-  const event = request.body;
-
-console.log (event.type);
-
-  // Handle the event
-  switch (event.type) {
-    case 'payment_intent.succeeded':
-      const paymentIntent = event.data.object;
-      // Then define and call a method to handle the successful payment intent.
-      // handlePaymentIntentSucceeded(paymentIntent);
-      break;
-    case 'payment_method.attached':
-      const paymentMethod = event.data.object;
-      // Then define and call a method to handle the successful attachment of a PaymentMethod.
-      // handlePaymentMethodAttached(paymentMethod);
-      break;
-    // ... handle other event types
-    default:
-      console.log(`Unhandled event type ${event.type}`);
+http.createServer((request, response) => {
+  if (request.method === 'POST' && request.url === '/') {
+    let body = [];
+    request.on('data', (chunk) => {
+      body.push(chunk);
+    }).on('end', () => {
+      body = Buffer.concat(body).toString();
+     parsed = JSON.parse(body);
+      console.log('event type:', parsed.eventType);
+      console.log('detail Message:', parsed.detailedMessage.text);
+      console.log('status:', parsed.resource.status);
+    });
+    response.statusCode = 200;
+    response.end();
+  } else {
+    response.statusCode = 404;
+    response.end();
   }
-
-  // Return a response to acknowledge receipt of the event
-  response.json({received: true});
-});
-
-app.listen(3000, () => console.log('Running on port 3000'));
+}).listen(3000,() => console.log('Running on port 3000'));
